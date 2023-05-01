@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The busy bees of Alberta",
+    "section": "",
+    "text": "Statistics Canada has wonderfully surveyed honey producers across the provinces for over 50 years. To promote transparency and accountability within the industry, the data can provide insights into the current state of the industry and help producers make informed decisions about how to manage their operations.\n \n\n\nThe data collected\n \n\nHow many colonies there are in the province.\nHow much honey is produced in the province.\nHow many Beekeepers there are in the province.\nThe value of the honey sold connected to the provinces capacity.\n\n \n\n\n\nProvinces\n \n\n\n\nOntario\nQuebec\nNew Brunswick\nNova Scotia\nBritish Columbia\n\n\n\nAlberta\nPrince Edward Island\nManitoba\nSaskatchewan\n\n\n\n \n\n\n\nCanada’s 2022 honey industry\n \n\n\n\nColonies decreased by 8 %.\nProduction decreased by 16 %.\nProduction by colony decreased by 8 %.\n\n\n\nBeekeepers increased by 3 %.\nValue decreased by 6 %.\n\n\n\n \n\n\n\n\n\n\n\n The trimuvate of honey production in Canada is Alberta, gaining double the value; Manitoba; And Saskatchewan. While greater colonies do produce more value, Manitoba's and Saskatchewan's strength in optimization is awesome. \n\n\n\n\n\n\n\n\n Colonies, production, and value are strongly, positively, correlated. \n\n \n\n2021 - 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nON\nNB\nNS\nPEI\nBC\nSK\nQB\nMA\n\n\n\n\nColonies\n1 %\n-36 %\n-4 %\n30 %\n2 %\n-11 %\n-27 %\n-10 %\n\n\nProduction\n19 %\n-41 %\n2 %\n11 %\n-11 %\n-31 %\n-30 %\n-17 %\n\n\nYield per colony\n17 %\n-9 %\n5 %\n-14 %\n-14 %\n-23 %\n-6 %\n-9 %\n\n\nBeekeepers\n16 %\n34 %\n7 %\n0 %\n0 %\n3 %\n-18 %\n-2 %\n\n\nValue\n24 %\n-31 %\n4 %\n15 %\n20 %\n-29 %\n-29 %\n-9 %\n\n\n\n\n\n\nAlberta’s capacity\n\nColonies\n \n\n\n\n\n\n\n\n\n\n\n\n\n \n\n40 % of Canada’s bee colonies are in Alberta.\nAlberta’s colonies decreased by 7 % over the last year.\n\n \n\n\nPounds\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nThe value in pounds is reduced by 1000\n\n\n40 % of Canada’s honey production is in Alberta.\nAlberta’s production decreased by 11 % over the last year.\n\n \n\n\nYield per colony\n \n\n\n\n\n\n\n\n\n\n\n\n\n \n\nAlberta’s yield is optimized to produce 4% than the national average.\nAlberta’s yield decreased by 4 % over the last year.\n\n \n\n\nBeekeepers\n \n\n\n\n\n\n\n\n\n\n\n\n\n \n\n12 % of Canada’s beekeepers are in Alberta.\nAlberta’s beekeepers decreased by 3 % over the last year.\n\n \n\n\nDollars\n \n\n\n\n\n\n\n\n\n\n\n\n\n\nThe dollar value is reduced by 1000\n\n\n37 % of Canada’s honey sales are from Albertan producers.\nAlberta’s sales increased by 2 % over the last year.\n\n \n\n2021 - 2022\n\n\n\nAB\nCA\n\n\n\n\nColonies\n-7 %\n-8 %\n\n\nProduction\n-11 %\n-16 %\n\n\nYield per colony\n-4 %\n-8 %\n\n\nBeekeepers\n-3 %\n3 %\n\n\nValue\n2 %\n-6 %\n\n\n\n \n\n\n\n\nForecasting Alberta’s product\n \n\nProduction:ARIMA(0,1,1) with drift\n\n\nValue: ARIMA(1,1,1) with drift\n\n\nColonies: ARIMA(0,1,0) with drift\n\n \n\n\n\n\nAlbertan Production\n\n\n\nPoint Forecast\nLo 80\nHi 80\nLo 95\nHi 95\n\n\n\n\n2023\n35016\n30004\n40029\n27350\n42682\n\n\n\n\n\n\nAlbertan Value\n\n\n\nPoint Forecast\nLo 80\nHi 80\nLo 95\nHi 95\n\n\n\n\n2023\n91959\n83644\n100273\n79242\n104675\n\n\n\n\n\n\n\n\nAlbertan Colonies\n\n\n\nPoint Forecast\nLo 80\nHi 80\nLo 95\nHi 95\n\n\n\n\n2023\n303566\n288739\n318393\n280891\n326242\n\n\n\n\n\n\n \n\n\n\n\nPredicted Change in 2023\n\n\n\n\nProduction\n3 %\n\n\nValue\n-1 %\n\n\nColonies\n-6 %\n\n\n\n\n\n\nConclusion"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#pollination",
+    "href": "index.html#pollination",
+    "title": "The busy bees of Alberta",
+    "section": "Pollination",
+    "text": "Pollination"
+  },
+  {
+    "objectID": "index.html#honeycomb",
+    "href": "index.html#honeycomb",
+    "title": "The busy bees of Alberta",
+    "section": "Honeycomb",
+    "text": "Honeycomb\n\n\n\n\n\n\n\n2021 - 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nON\nNB\nNS\nPEI\nBC\nSK\nQB\nMA\n\n\n\n\nBeekeepers\n16 %\n34 %\n7 %\n0 %\n0 %\n3 %\n-18 %\n-2 %\n\n\nColonies\n1 %\n-36 %\n-4 %\n30 %\n2 %\n-11 %\n-27 %\n-10 %\n\n\nProduction\n19 %\n-41 %\n2 %\n11 %\n-11 %\n-31 %\n-30 %\n-17 %\n\n\nProduction per Colony\n17 %\n-9 %\n5 %\n-14 %\n-14 %\n-23 %\n-6 %\n-9 %\n\n\nValue\n24 %\n-31 %\n4 %\n15 %\n20 %\n-29 %\n-29 %\n-9 %\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?”\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2021 - 2022\n\n\n\nAB\nCA\n\n\n\n\nBeekeepers\n-3 %\n3 %\n\n\nColonies\n-7 %\n-8 %\n\n\nProduction\n-11 %\n-16 %\n\n\nProduction per Colony\n-4 %\n-8 %\n\n\nValue\n2 %\n-6 %"
+  }
+]

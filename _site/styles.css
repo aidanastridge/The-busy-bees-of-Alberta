@@ -1,0 +1,42 @@
+/* css styles */
+
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+    color: white !important;
+    background-color: #4F200D;
+    font-weight: bold;
+}
+
+
+a.nav-link:hover {
+      color:  #4F200D !important;
+}
+
+.title{
+  color:  black !important;
+}
+
+.level2.h2 {
+  color:  #7E433E !important;
+}
+
+.level3.h3 {
+  color:  black !important;
+}
+
+.a:hover{
+  color:  #4F200D !important;
+}
+
+  .title {
+    font-size: 3em;
+    color: #ffffff;
+  }
+
+  .subtitle {
+    font-size: 2em;
+  }
+
+  .quarto-title-author {
+    color: #ffffff;
+  }
+}
