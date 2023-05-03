@@ -8,7 +8,7 @@
 
 
 a.nav-link:hover {
-      color:  #4F200D !important;
+      color:  black !important;
 }
 
 .title{
@@ -39,4 +39,29 @@ a.nav-link:hover {
   .quarto-title-author {
     color: #ffffff;
   }
+}
+
+ul.dropdown-menu {
+  background: white !important;
+  border-style: none !important;
+}
+
+a.dropdown-item:hover {
+  color: black !important;
+  text-decoration: underline;
+  background: transparent !important;
+}
+
+a{
+  color: black !important;
+  text-decoration: none;
+}
+
+a:hover{
+  color: black !important;
+  text-decoration: underline;
+}
+
+h4 {
+  color:black;
 }
