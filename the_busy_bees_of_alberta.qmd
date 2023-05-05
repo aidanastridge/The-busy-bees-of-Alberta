@@ -1,0 +1,392 @@
+---
+title: "The busy bees of Alberta"
+subtitle: "Production and value of Canadian honey from 1924 to 2021"
+date: 2023-05-01
+---
+
+```{r}
+#| echo: false
+#| output: false
+library(tidyverse)
+library(dygraphs)
+library(plotly)
+library(RColorBrewer)
+library(fpp2)
+library(knitr)
+
+
+df <- read.csv("~/Documents/CanadianHoney.csv", stringsAsFactors = TRUE)
+df <- df[-c(3,5:10,12:15)]
+
+
+df <- df %>%
+  pivot_wider(names_from = Estimates, values_from = VALUE)
+cty <- levels(df$GEO)
+df <-df %>% 
+  mutate(`Yield per Colony`= round(`Production of natural honey, total [16133111]`/Colonies*1000))
+df$`Yield per Colony`[df$`Yield per Colony` == Inf] <- 0 
+
+for(x in cty) {
+dfsub <- df  
+dfcty <- subset(dfsub, GEO  == x)
+assign(paste0(x), dfcty, envir = .GlobalEnv)}
+
+for (x in cty){
+  dfsub <- df
+  col<-(ts(subset(df, GEO == x ,
+            select=c(Colonies)),frequency = 1, start=c(1924)))
+  assign(paste0(x," Colonies"), col, envir = .GlobalEnv)
+}
+
+for (x in cty){
+  dfsub <- df
+  bk<-(ts(subset(df, GEO == x ,
+                  select=c(Beekeepers)),frequency = 1, start=c(1924)))
+  assign(paste0(x," Beekeepers"), bk, envir = .GlobalEnv)
+}
+
+for (x in cty){
+  dfsub <- df
+  p<-(ts(subset(df, GEO == x ,
+                 select=c(`Production of natural honey, total [16133111]`)),frequency = 1, start=c(1924)))
+  assign(paste0(x," Production of natural honey"), p, envir = .GlobalEnv)
+}
+
+for (x in cty){
+  dfsub <- df
+  nh<-(ts(subset(df, GEO == x ,
+                select=c(`Value of natural honey, total [16133111]`)),frequency = 1, start=c(1924)))
+  assign(paste0(x," Value of natural honey, total"), nh, envir = .GlobalEnv)
+}
+
+for (x in cty){
+  dfsub <- df
+  y<-(ts(subset(df, GEO == x ,
+                select=c(`Yield per Colony`)),frequency = 1, start=c(1924)))
+  assign(paste0(x," Yield per Colony"), y, envir = .GlobalEnv)
+}
+
+tsg <- function(tsc,name){
+  dygraph(tsc, main = name) %>% dyRangeSelector(fillColor ="white", strokeColor = "black") %>% dySeries(label="AB", color="#EBB02D") %>%
+    dySeries(label = "CA", color="black") %>%
+    dyHighlight(highlightCircleSize = 5, 
+                highlightSeriesBackgroundAlpha = 0.2,
+                hideOnMouseOut = TRUE)
+}
+
+tsg2 <- function(tsc,name){
+  dygraph(tsc, main = name) %>% dyRangeSelector(fillColor ="white", strokeColor = "black") %>% dySeries(label="Fitted", color="#EBB02D") %>%
+    dySeries(label = "Recorded", color="black") %>%
+    dyHighlight(highlightCircleSize = 5, 
+                highlightSeriesBackgroundAlpha = 0.2,
+                hideOnMouseOut = TRUE)
+}
+
+tptsg <- function(tsc,name){
+  dygraph(tsc, main = name) %>% dyRangeSelector(fillColor ="white", strokeColor = "black") %>% dySeries(label="AB", color="#EBB02D") %>%
+    dyHighlight(highlightCircleSize = 5, 
+                highlightSeriesBackgroundAlpha = 0.2,
+                hideOnMouseOut = TRUE)
+}
+
+col <- cbind(`Alberta Colonies`,
+             `Canada Colonies`
+             )
+
+bk <- cbind(`Alberta Beekeepers`,
+             `Canada Beekeepers`
+)
+
+p <- cbind(`Alberta Production of natural honey`,
+            `Canada Production of natural honey`
+)
+
+nh <-cbind(`Alberta Value of natural honey, total`,
+           `Canada Value of natural honey, total`)
+y <- cbind(`Alberta Yield per Colony`, `Canada Yield per Colony`)
+
+pcol<- ts(Alberta[1:99, 4]/Canada[1:99,4]*100,frequency= 1, start = c("1924"))
+pbk <- ts(Alberta[1:99, 3]/Canada[1:99,3]*100,frequency= 1, start = c("1924"))
+pnh <- ts(Alberta[1:99, 6]/Canada[1:99,6]*100,frequency= 1, start = c("1924"))
+pv <- ts(Alberta[1:99, 7]/Canada[1:99,7]*100,frequency= 1, start = c("1924"))
+py <- ts(Alberta[1:99, 9]/Canada[1:99,9]*100,frequency= 1, start = c("1924"))
+
+sp<-filter(df, GEO != "Canada")
+sp$GEO <- as.character(sp$GEO)
+
+sp <- rename(sp, Value = `Value of natural honey, total [16133111]`)
+sp <- rename(sp, Production = `Production of natural honey, total [16133111]`)
+sp$GEO <- as.factor(sp$GEO)
+sp <- rename(sp, Year = REF_DATE)
+sp <- rename(sp, Geography = GEO)
+
+```
+
+ 
+
+Statistics Canada has wonderfully [surveyed](https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&SDDS=3419) honey producers across the provinces for over 50 years. To promote transparency and accountability within the industry, the data can provide insights into the current state of the industry and help producers make informed decisions about how to manage their operations.
+
+ 
+
+------------------------------------------------------------------------
+
+### The data collected
+
+ 
+
+-   How many colonies there are in the province.
+-   How much honey is produced in the province.
+-   How many Beekeepers there are in the province.
+-   The value of the honey sold connected to the provinces capacity.
+
+ 
+
+------------------------------------------------------------------------
+
+### Provinces
+
+ 
+
+::: columns
+::: {.column width="50%"}
+-   Ontario
+-   Quebec
+-   New Brunswick
+-   Nova Scotia
+-   British Columbia
+:::
+
+::: {.column width="50%"}
+-   Alberta
+-   Prince Edward Island
+-   Manitoba
+-   Saskatchewan
+:::
+:::
+
+ 
+
+------------------------------------------------------------------------
+
+### Canada's 2022 honey industry
+
+ 
+
+::: columns
+::: {.column width="50%"}
+-   Colonies decreased by 8 %.
+-   Production decreased by 16 %.
+-   Production by colony decreased by 8 %.
+:::
+
+::: {.column width="50%"}
+-   Beekeepers increased by 3 %.
+-   Value decreased by 6 %.
+:::
+:::
+
+ 
+
+```{r}
+#| echo: false
+#| warning: false
+
+ggplotly(ggplot(sp) + geom_point(aes(Beekeepers, Colonies, fill = Geography, size=Value, frame=Year, stroke=.3))+ theme_minimal() + labs(color='', fill="", size="",frame="Year", stroke="")+ scale_fill_brewer(palette = "YlOrRd")) %>% 
+    animation_opts(
+    1000, easing = "elastic", redraw = FALSE
+  ) %>% 
+  animation_button(
+    x = 1, xanchor = "right", y = 0, yanchor = "bottom"
+  ) %>%
+  animation_slider(
+    currentvalue = list(prefix = "Year ", font = list(color="black"))
+  )
+```
+
+```{=html}
+<br></br>
+<p> The trimuvate of honey production in Canada is Alberta, gaining double the value; Manitoba; And Saskatchewan.The former group accounts for four-fifths of Canadas Total Honey Production. While greater colonies do produce more value, Manitoba's and Saskatchewan's strength in optimization is awesome. </p>
+<br></br>
+```
+```{r}
+#| echo: false
+#| warning: false
+ggplotly(ggplot(sp) + geom_point(aes(Value, Production, size = Colonies, fill = Geography, frame=Year, stroke=.3))+ theme_minimal() + labs(color='', fill="", size="",frame="Year", stroke="", y = "Production")+ scale_fill_brewer(palette = "YlOrRd")) %>% 
+    animation_opts(
+    1000, easing = "elastic", redraw = FALSE
+  ) %>% 
+  animation_button(
+    x = 1, xanchor = "right", y = 0, yanchor = "bottom"
+  ) %>%
+  animation_slider(
+    currentvalue = list(prefix = "Year ", font = list(color="black"))
+  )
+```
+
+ 
+
+```{=html}
+<br></br>
+<p> Colonies, production, and value are strongly, positively, correlated. </p>
+<br></br>
+```
+ 
+
+|                  | ON   | NB    | NS   | PEI   | BC    | SK    | QB    | MA    |
+|------------------|------|-------|------|-------|-------|-------|-------|-------|
+| Colonies         | 1 %  | -36 % | -4 % | 30 %  | 2 %   | -11 % | -27 % | -10 % |
+| Production       | 19 % | -41 % | 2 %  | 11 %  | -11 % | -31 % | -30 % | -17 % |
+| Yield per colony | 17 % | -9 %  | 5 %  | -14 % | -14 % | -23 % | -6 %  | -9 %  |
+| Beekeepers       | 16 % | 34 %  | 7 %  | 0 %   | 0 %   | 3 %   | -18 % | -2 %  |
+| Value            | 24 % | -31 % | 4 %  | 15 %  | 20 %  | -29 % | -29 % | -9 %  |
+
+: 2021 - 2022
+
+------------------------------------------------------------------------
+
+### Alberta's capacity
+
+#### Colonies
+
+ 
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+tsg(col, "Compared to all provinces")
+tptsg(pcol, "Percent of all provinces")
+```
+
+ 
+
+-   40 % of Canada's bee colonies are in Alberta.
+-   Alberta's colonies decreased by 7 % over the last year.
+
+ 
+
+#### Pounds
+
+ 
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+tsg(p, "Compared to all provinces")
+tptsg(pnh, "Percent of all provinces")
+```
+
+> The value in pounds is reduced by 1000
+
+-   40 % of Canada's honey production is in Alberta.
+-   Alberta's production decreased by 11 % over the last year.
+
+ 
+
+#### Yield per colony
+
+ 
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+tsg(y, "Compared to all provinces")
+tptsg(py, "Percent of all provinces")
+```
+
+ 
+
+-   Alberta's yield is optimized to produce 4% than the national average.
+-   Alberta's yield decreased by 4 % over the last year.
+
+ 
+
+#### Beekeepers
+
+ 
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+tsg(bk,"Compared to all provinces")
+tptsg(pbk,"Percent of all provinces")
+```
+
+ 
+
+-   12 % of Canada's beekeepers are in Alberta.
+-   Alberta's beekeepers decreased by 3 % over the last year.
+
+ 
+
+#### Dollars
+
+ 
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+
+tsg(nh, "Compared to all provinces")
+tptsg(pv, "Percent of all provinces")
+```
+
+> The dollar value is reduced by 1000
+
+-   37 % of Canada's honey sales are from Albertan producers.
+-   Alberta's sales increased by 2 % over the last year.
+
+ 
+
+|                  |    AB |    CA |
+|------------------|------:|------:|
+| Colonies         |  -7 % |  -8 % |
+| Production       | -11 % | -16 % |
+| Yield per colony |  -4 % |  -8 % |
+| Beekeepers       |  -3 % |   3 % |
+| Value            |   2 % |  -6 % |
+
+: 2021 - 2022
+
+ 
+
+------------------------------------------------------------------------
+
+### Forecasting Alberta's product
+
+ 
+
+> VAR(1)
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+#| output: false
+library(vars)
+library(astsa)
+
+var <- cbind(`Alberta Colonies`,`Alberta Production of natural honey`,`Alberta Value of natural honey, total`)
+
+plot.ts(var)
+fitvar1= VAR(var, p=1, type="both")
+summary(fitvar1)
+
+
+acf(residuals(fitvar1))
+
+forecast(fitvar1, h=1)
+
+(35902.13 - `Alberta Production of natural honey`[98])/`Alberta Production of natural honey`[98]
+(101451- `Alberta Value of natural honey, total`[98])/`Alberta Value of natural honey, total`[98]
+(311382.5 - `Alberta Colonies`[98])/`Alberta Colonies`[98]
+
+```
+
+|            | Forecast for 2023 | Predicted Change in 2023 |
+|------------|-------------------|-------------------------:|
+| Production | 35902             |                      5 % |
+| Value      | 101451            |                      8 % |
+| Colonies   | 311382            |                     -4 % |
+
+While production and value are predicted to increase, colonies are predicted to lower into the next year.
+
+------------------------------------------------------------------------
